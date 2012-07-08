@@ -179,4 +179,9 @@ def game_ajax_waiting_players(request, pk):
     game = get_object_or_404(Game, id=pk)
     result = [player.id for player in game.waiting_players()]
     return HttpResponse(simplejson.dumps(result), mimetype="application/json")
-        
+    
+def check_start(request,pk):
+    game = get_object_or_404(Game, id=pk)
+    result = [game.started]
+    return HttpResponse(simplejson.dumps(result), mimetype="application/json")
+    

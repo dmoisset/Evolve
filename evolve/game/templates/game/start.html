@@ -1,4 +1,26 @@
 {% extends "game/base.html" %}
+{% block extrahead %}
+    <script>
+        /* Toggles the indicator to know which players have already played */
+        function check_start() {
+            $.getJSON('{% url check_start pk=game.pk %}',
+                function (data) {
+                    /* Check if turn has ended */
+                    if (data[0]){
+                        location.replace('{{ game.get_absolute_url }}');
+                    }
+                }
+            );
+        }
+
+        /* Startup code*/ 
+        $(function() {
+            /* Automatic update based on who played */
+            check_start();
+            window.setInterval(check_start, 4000);
+        });
+    </script>
+{% endblock extrahead %}
 {% block contents %}
 
 <h1>Start Game</h1>

@@ -12,6 +12,7 @@ urlpatterns = patterns('evolve.game.views',
     url(r'^(?P<pk>\d+)/watch/$', 'game_watch', name='game-watch'),
     # AJAX views
     url(r'^(?P<pk>\d+)/ajax/waiting-players.json$', 'game_ajax_waiting_players', name='game-ajax-waiting-players'),
+    url(r'^(?P<pk>\d+)/ajax/check_start$','check_start', name = 'check_start')
 )
 
 # /1/ : Main game screen, redirects according to state: If game...
