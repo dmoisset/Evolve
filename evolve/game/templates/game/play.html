@@ -91,8 +91,12 @@
         <div class="option kind-{{o.building.kind.name}} ui-corner-all" id="selector-{{ o.id }}">
             <p><span class="building-name">{{ o.building }}</span>: {{o.building.effect }}</p>
             {% with o.building.free_having.all as free_dependencies %}
-                <p>({{ o.building.cost }}{% if free_dependencies %} or {{ free_dependencies|join:" or " }}{% endif %})</p>
+                <p>({{ o.building.cost }}{% if free_dependencies %} or {{ free_dependencies|join:" or " }}{% endif %})
             {% endwith %}
+            {% with o.building.allows_free.all as allows_free %}{% if allows_free.count %}
+                   (Allows {{ allows_free|join:" or " }} for free)
+            {% endif %}{% endwith %}
+                </p>
         </div>
     {% endfor %}
 

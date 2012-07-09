@@ -390,7 +390,7 @@ class Building(models.Model):
     effect = models.ForeignKey(Effect)
 
     cost = models.ForeignKey(Cost)
-    free_having = models.ManyToManyField('self', blank=True, null=True, symmetrical=False) # This models is free when having other bulding
+    free_having = models.ManyToManyField('self', blank=True, null=True, symmetrical=False, related_name='allows_free') # This models is free when having other bulding
 
     def score(self, local, left, right):
         """
